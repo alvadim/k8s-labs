@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redisapp
+  labels:
+    app: redisapp
+    env: prod
+spec:
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - mysql
+        topologyKey: kubernetes.io/hostname
+  containers:
+   - name: redis
+     image: nginx
+
+
