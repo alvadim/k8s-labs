@@ -1,0 +1,60 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  sapiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: "2022-11-15T12:59:48Z"
+  generation: 1
+  name: hellocronjob
+  namespace: default
+  resourceVersion: "42729"
+  uid: 45487dc8-319b-4921-8537-269109bedfea
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: hellocronjob
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - command:
+            - echo
+            - hello from alvadim
+            image: alpine
+            imagePullPolicy: Always
+            name: hellocronjob
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: OnFailure
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+  schedule: 0/5 * * * *
+  successfulJobsHistoryLimit: 3
+  suspend: false
+status: {}
+chedule: 0/5 * * * *   
+spec:
+  template:
+     spec:
+       containers:
+       - name: hello
+         image: busybox:1.28
+         concurrencyPolicy: Allow
+         successfulJobsHistoryLimit: 3
+         failedJobsHistoryLimit: 5
+         command:
+         - /bin/sh
+         - -c
+         - echo Hello from alvadim
+       restartPolicy: OnFailure
