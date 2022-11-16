@@ -1,0 +1,15 @@
+kind: Service      # Create new service
+apiVersion: v1
+metadata:
+  name: lab10 # Name of the service
+spec:
+  selector:
+    app: lab10
+  type: LoadBalancer   # Run on any pod(s) with label - app: myapp
+  ports:          # Map incoming port to target port
+  - name: lab10
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+
+~                            
