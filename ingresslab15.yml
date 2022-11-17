@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bearmooseingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: bear..nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bearsvc
+            port:
+              number: 80
+  - host: moose..nip.io
+    http:
+      paths:
+      - path: /
+        pathYype: Prefix
+        backend:
+          service:
+            name: moosesvc
+            port:
+              number: 80
+  - host:                #all other request will see the hare
+    http:
+      paths:
+      - path: /
+        pathYype: Prefix
+        backend:
+          service:
+            name: haresvc
+            port:
+              number: 80
