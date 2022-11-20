@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bearapp
+  name: bear-deploy
 spec:
   selector:
     matchLabels:
@@ -22,7 +22,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mooseapp
+  name: moose-deploy
 spec:
   selector:
     matchLabels:
@@ -36,26 +36,6 @@ spec:
       containers:
       - name: moose
         image: supergiantkir/animals:moose
-        ports:
-        - containerPort: 80
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: hareapp
-spec:
-  selector:
-    matchLabels:
-      app: hare
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: hare
-    spec:
-      containers:
-      - name: hare
-        image: supergiantkir/animals:hare
         ports:
         - containerPort: 80
 ---
@@ -81,19 +61,6 @@ spec:
     app: moose   
   ports:          
   - name: http    
-    protocol: TCP
-    port: 80
-    targetPort: 80
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: haresvc
-spec:
-  selector:
-    app: hare
-  ports:
-  - name: http
     protocol: TCP
     port: 80
     targetPort: 80
