@@ -13,7 +13,7 @@ spec:
         app: music
     spec:
       containers:
-      - name: {{ .Release.Name }}
+      - name: {{ .Release.Name }}-service
         image: {{ .Values.pods.image }}
           tag: {{ .Values.pods.tag }}
         ports:
