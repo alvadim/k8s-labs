@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-service
-        image: {{ .Values.pods.image }}
-          tag: {{ .Values.pods.tag }}
+        image: {{ .Values.pods.image }}:{{ .Values.pods.tag }}
+          # tag: {{ .Values.pods.tag }}
         ports:
         - containerPort: 8080
