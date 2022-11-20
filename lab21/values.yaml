@@ -1,0 +1,9 @@
+type: LoadBalancer
+port: 80
+portName: http
+targetPort: 8080
+replicas: 2
+pods:
+  image: yanivomc/spring-music
+  tag: latest
+version: 0.1.0
