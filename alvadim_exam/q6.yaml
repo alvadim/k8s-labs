@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: messaging-servise
+  labels: tier=msg
 spec:
   selector:
     app: messaging-servise

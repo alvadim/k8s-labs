@@ -1,18 +1,30 @@
 1.kubectl run nginx-pod-alvadim --image=nginx:alpine 
+
 2. kubectl run messaging --image=redis:alpine -l tier=msg
+
 3. kubectl create ns apx-x998-alvadim
+
 4. # kubectl get nodes -o json > /tmp/nodes-yourname
-5. kubectl expose deployment messaging --port=6379 --target-port=6379 --type=ClusterIp\
- -l tier:msg --name=messaging-servise 
+
+5.  kubectl create service clusterip messaging-service --tcp=6379:6379
+    kubectl label service messaging-service tier=msg
 6. q6.yaml
-   kubectl create service clusterip messaging-service --tcp=6379:6379
-   kubectl label service messaging-service tier=msg
+
 7. kubectl create deployment hr-web-app --image=kodekloud/webapp-color --replicas=2
-8. kubectl run static-busybox --image=busybox -- sleep 1000
+
+8. 1- kubectl run static-busybox --image=busybox --dry-run=client -o yaml > static-busybox.yaml
+   2- add command sleep 1000 to static-busybox.yaml
+   3- cp static-busybox.yaml /etc/kubernetes/manifests
+   see static-busybox.yaml
+
 9. kubectl run temp-bus --image=redis:alpine --namespace=finance-alvadim
+
 10. q10.yaml
+
 11. q11.yaml
+
 12. q12-pod.yaml q10.yaml
+
 13. kubectl create deployment nginx-deploy --image=nginx:1.16 --replicas=1
      kubectl describe po | grep image
       Normal  Pulling    106s  kubelet            Pulling image "nginx:1.17"
