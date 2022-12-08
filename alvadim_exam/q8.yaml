@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-busybox
+  labels:
+    env: test
+spec:
+  containers:
+  - name: static-busybox
+    image: busybox
+   

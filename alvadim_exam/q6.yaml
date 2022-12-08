@@ -1,0 +1,13 @@
+kind: Service     
+apiVersion: v1
+metadata:
+  name: messaging-servise
+spec:
+  selector:
+    app: messaging-servise
+  type: ClusterIp
+  ports:         
+  - name: messaging-servise
+    protocol: TCP
+    port: 6379
+    
