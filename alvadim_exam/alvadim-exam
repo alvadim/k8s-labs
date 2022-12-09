@@ -42,4 +42,33 @@
     deployment.kubernetes.io/revision: "2"
     kubernetes.io/change-cause: kubectl1.25.4 set image deployment nginx-deploy nginx=nginx:1.17
 
+14. q14pod.yaml
+    q14svc.yaml
 
+    kubectl exec -ti nginx-resolver -- /bin/bash
+    apt-get update
+    apt-get install -y busybox
+    busybox nslookup nginx-resolver-service.default.svc.cluster.local \
+              > /root/nginx-yourname.svc 
+             Server:	10.43.0.10
+             Address:	10.43.0.10:53
+
+             Name:	nginx-resolver-service.default.svc.cluster.local
+             Address: 10.43.233.118
+
+15. ssh node01
+    #mkdir -p /etc/kubernetes/manifests/
+cat <<EOF >/etc/kubernetes/manifests/static-web.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-critical
+spec:
+  containers:
+    - name: nginx-critical
+      image: nginx
+      ports:
+        - name: nginx-critical
+          containerPort: 80
+          protocol: TCP
+EOF

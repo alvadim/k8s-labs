@@ -7,7 +7,6 @@ metadata:
 spec:
   selector:
     app: messaging-servise
-  type: ClusterIp
   ports:         
   - name: messaging-servise
     protocol: TCP
