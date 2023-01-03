@@ -1,4 +1,4 @@
-ApiVersion: v1 # K8S API Version
+apiVersion: v1 # K8S API Version
 kind: Pod  # Object Type
 metadata: 
  name: nginx-pod 
